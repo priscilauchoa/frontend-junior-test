@@ -1,0 +1,24 @@
+.header {
+    width: 100%;
+}
+
+.logo {
+    height: 4vmin;
+}
+
+.star_wrapper {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    align-items: center;
+   
+}
+
+.star_wrapper > div{
+    display: flex;
+}
+.star {
+    fill: yellow;
+    height: 3vmin;
+    margin: 25px 5px 25px 0;
+}

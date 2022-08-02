@@ -1,13 +1,23 @@
-import logo from './assets/logo.svg';
-import { ReactComponent as Star } from './assets/shooting-star.svg';
 import './App.css';
+import Header from "./components/Header/Header.js"
+import React from "react";
+import Home from './components/Home/Home.js';
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes
+} from 'react-router-dom';
 
 function App() {
     return (
-        <div className='App'>
-            <img src={logo} className='logo' alt='logo' />
-            <Star className="star"/>
-        </div>
+        <Router>
+            <div className='App'>
+                <Header />
+                <Routes>
+                    <Route path='/home' element={<Home />} />
+                </Routes>
+            </div>
+        </Router>
     );
 }
 
