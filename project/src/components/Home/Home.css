@@ -1,0 +1,13 @@
+table {
+    width: 100%;
+    height: 200px;
+    text-align: right;
+}
+
+th {
+    font-size: 10px;
+}
+
+td {
+    font-weight: bold;
+}
