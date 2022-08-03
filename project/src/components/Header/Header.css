@@ -1,20 +1,26 @@
 .header {
-    width: 100%;
+    width: 70%;
 }
 
 .logo {
-    height: 4vmin;
+    text-align: center;
+    height: 3.5vmin;
+    padding: 25px;
 }
 
-.star_wrapper {
+.star-wrapper {
     display: flex;
     justify-content: space-between;
     font-size: 12px;
     align-items: center;
-   
 }
 
-.star_wrapper > div{
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.star-wrapper > div {
     display: flex;
 }
 .star {
