@@ -7,6 +7,7 @@ import {
     Route,
     Routes
 } from 'react-router-dom';
+import Edit from './components/Edit.js/Edit';
 
 function App() {
     return (
@@ -14,7 +15,10 @@ function App() {
             <div className='App'>
                 <Header />
                 <Routes>
-                    <Route path='/home' element={<Home />} />
+                    <Route path='/' element={<Home />} />
+                </Routes>
+                <Routes>
+                    <Route path='/edit/:id' element={<Edit />} />
                 </Routes>
             </div>
         </Router>

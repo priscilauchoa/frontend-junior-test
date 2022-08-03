@@ -1,7 +1,7 @@
 table {
-    width: 100%;
+    width: 70%;
     height: 200px;
-    text-align: right;
+    text-align: left;
 }
 
 th {
@@ -10,4 +10,14 @@ th {
 
 td {
     font-weight: bold;
+}
+
+.edit {
+    fill: white;
+    width: 12px;
+    padding: 0 10px;
+}
+
+button {
+    background-color: transparent;
 }
