@@ -1,16 +1,27 @@
-.btn-add-token{
-    background-color: rgb(170,52,181);
+button {
+    border: none;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 8px;
+    justify-content: space-between;
+    padding: 5px 7px;
+    margin: 4px 0;
+    text-align: center;
+    text-decoration: none;
 }
 
-button {
-  border: none;
-  color: white;
-  border-radius: 3px;
-  padding: 5px 7px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 8px;
-  margin: 4px;
-  cursor: pointer;
+.btn-add-token,
+.btn-save {
+    background-color: rgb(170, 52, 181);
+}
+
+.btn-remove {
+    background-color: rgb(176, 30, 30);
+}
+
+.edit-btns {
+    display: flex;
+    justify-content: space-between;
 }
