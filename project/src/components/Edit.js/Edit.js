@@ -7,7 +7,6 @@ import NavButton from '../NavButton/NavButton';
 import Form from '../Form/Form.js';
 import { useNavigate } from 'react-router-dom';
 
-
 function Edit() {
     let { id } = useParams();
     let tokenId = tokens.find((token) => token.id == id);
@@ -16,15 +15,14 @@ function Edit() {
 
     const [token, setToken] = useState(tokens[tokenIndex].token);
     const [balance, setBalance] = useState(tokens[tokenIndex].balance);
-    // const [messageError, setMessageError] = useState(false);
+    const [messageError, setMessageError] = useState(false);
 
     function handleSave(e) {
         // e.preventDefaut();
-
         console.log('token', token);
 
-        if (token === '') {
-            // setMessageError(true);
+        if (token === '' || balance === '') {
+            setMessageError(true);
             console.log('no token typed');
         } else {
             tokens[tokenIndex] = {
@@ -32,9 +30,8 @@ function Edit() {
                 token: token,
                 balance: balance
             };
+            navigate('/', { replace: true });
         }
-        navigate('/', { replace: true });
-
     }
     function handleRemove() {
         console.log('remove clicked -->');
@@ -57,6 +54,11 @@ function Edit() {
                 setToken={setToken}
                 setBalance={setBalance}
             />
+            {messageError && (
+                <h3>
+                    You missed some field, Please fill all the informations!
+                </h3>
+            )}
         </>
     );
 }

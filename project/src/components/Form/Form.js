@@ -40,7 +40,6 @@ function Form(props) {
                     type='text'
                     name='token'
                     defaultValue={props.token}
-                    // onChange={(e) => setToken(e.target.value)}
                     onChange={(e) => props.setToken(e.target.value)}
                     required
                 ></input>
@@ -50,7 +49,6 @@ function Form(props) {
                     name='balance'
                     defaultValue={props.balance}
                     onChange={(e) => props.setBalance(e.target.value)}
-                    // onChange={(e) => setBalance(e.target.value)}
                     required
                 ></input>
                 <div className='edit-btns'>
@@ -68,11 +66,6 @@ function Form(props) {
                     />
                 </div>
             </form>
-            {/* {props.messageError && (
-                <h3>
-                    You missed some field, Please fill all the informations!
-                </h3>
-            )} */}
         </>
     );
 }
