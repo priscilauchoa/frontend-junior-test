@@ -8,10 +8,8 @@ function Home() {
     // const [edit, setEdit] = useState(true);
     let navigate = useNavigate();
 
-    function handleEdit(e) {
-        // console.log('add clicked -->', e);
-
-        let tokenToEdit = tokens.find((token) => token.id === e);
+    function handleEdit(id) {
+        let tokenToEdit = tokens.find((token) => token.id == id);
 
         // console.log('token to edit -->', tokenToEdit);
         navigate(`/edit/${tokenToEdit.id}`, { replace: true });
@@ -33,9 +31,9 @@ function Home() {
                     tokens.map((item) => {
                         return (
                             <tr>
-                                <td id={item.id}>
+                                <td key={item.id}>
                                     <button
-                                        onClick={(e) => handleEdit(item.id)}
+                                        onClick={() => handleEdit(item.id)}
                                     >
                                         <EditIccon className='edit' />
                                     </button>
