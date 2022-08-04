@@ -35,6 +35,15 @@ function Edit() {
 
     return (
         <>
+            <div className='edit-btns'>
+                <h5>Edit Token</h5>
+                <NavButton
+                    link='/'
+                    variant='back'
+                    onClick={handleRemove}
+                    text='Back'
+                />
+            </div>
             <form>
                 <label>Token</label>
                 <input

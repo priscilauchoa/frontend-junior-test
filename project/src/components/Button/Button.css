@@ -17,6 +17,10 @@ button {
     background-color: rgb(170, 52, 181);
 }
 
+.btn-back {
+    background-color: rgb(128, 128, 128);
+}
+
 .btn-remove {
     background-color: rgb(176, 30, 30);
 }
@@ -24,4 +28,6 @@ button {
 .edit-btns {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
