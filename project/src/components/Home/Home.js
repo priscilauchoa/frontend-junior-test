@@ -3,6 +3,7 @@ import './Home.css';
 import { ReactComponent as EditIccon } from '../../assets/edit.svg';
 import tokens from '../tokens.js';
 import { useNavigate } from 'react-router-dom';
+import NavButton from '../NavButton/NavButton';
 
 function Home() {
     // const [edit, setEdit] = useState(true);
@@ -23,6 +24,7 @@ function Home() {
     return (
         <>
             <table>
+                <NavButton link='/add' variant='add-token' text='Add Token' />
                 <tr>
                     <th>Tokens</th>
                     <th>Balance</th>
@@ -32,9 +34,7 @@ function Home() {
                         return (
                             <tr>
                                 <td key={item.id}>
-                                    <button
-                                        onClick={() => handleEdit(item.id)}
-                                    >
+                                    <button onClick={() => handleEdit(item.id)}>
                                         <EditIccon className='edit' />
                                     </button>
                                     {item.token}

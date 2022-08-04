@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import PageTitle from '../PageTitle/PageTitle';
 import Button from '../Button/Button';
+import RemoveMessage from '../RemoveMessage/RemoveMessage';
 
 function Edit() {
     let { id } = useParams();
@@ -18,10 +19,9 @@ function Edit() {
     const [token, setToken] = useState(tokens[tokenIndex].token);
     const [balance, setBalance] = useState(tokens[tokenIndex].balance);
     const [messageError, setMessageError] = useState(false);
-    const [messageRemove, setMessageRemove] = useState(true);
+    const [messageRemove, setMessageRemove] = useState(false);
 
     function handleSave(e) {
-        e.preventDefaut();
         console.log('token', token);
 
         if (token === '' || balance === '') {
@@ -33,15 +33,22 @@ function Edit() {
                 token: token,
                 balance: balance
             };
-            navigate('/', { replace: true });
+            navigate('/home', { replace: true });
         }
     }
 
-    function handleRemove() {
+    function handleRemove(e) {
         // tokens = tokens.filter((token) => token.id == tokenId.id);
-
+        e.preventDefault();
+        console.log('handle remove was clicked');
         setMessageRemove(true);
-        console.log('remove clicked -->', tokens, tokens[tokenIndex], 'id',tokenId.id);
+    }
+
+    function handleRemoveConfirmation(){
+        // tokens = tokens.filter((token) => token.id == tokenId.id);
+        console.log("remove confirmation, YES BTN")
+        navigate('/home', { replace: true });
+
     }
 
     return (
@@ -52,24 +59,22 @@ function Edit() {
                 balance={balance}
                 handleSave={(e) => handleSave(e)}
                 handleRemove={(e) => handleRemove(e)}
+                setMessageRemove={setMessageRemove}
                 setToken={setToken}
                 setBalance={setBalance}
             />
-            {messageError && <ErrorMessage />}
+            {messageError && (
+                <>
+                    <ErrorMessage />
+                </>
+            )}
             {messageRemove && (
-                <div>
-                    <h4>Are you sure you want to delete your token?</h4>
-                    <Button
-                        variant='save'
-                        // onClick={handleRemoveYes}
-                        text='YES'
+                <>
+                    <RemoveMessage
+                        handleRemoveConfirmation={handleRemoveConfirmation}
+                        setMessageRemove={setMessageRemove}
                     />
-                    <Button
-                        variant='remove'
-                        onClick={setMessageRemove(false)}
-                        text='NO'
-                    />
-                </div>
+                </>
             )}
         </>
     );
