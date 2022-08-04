@@ -3,9 +3,11 @@ import './Edit.css';
 import tokens from '../tokens.js';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import NavButton from '../NavButton/NavButton';
 import Form from '../Form/Form.js';
 import { useNavigate } from 'react-router-dom';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import PageTitle from '../PageTitle/PageTitle';
+import Button from '../Button/Button';
 
 function Edit() {
     let { id } = useParams();
@@ -16,9 +18,10 @@ function Edit() {
     const [token, setToken] = useState(tokens[tokenIndex].token);
     const [balance, setBalance] = useState(tokens[tokenIndex].balance);
     const [messageError, setMessageError] = useState(false);
+    const [messageRemove, setMessageRemove] = useState(true);
 
     function handleSave(e) {
-        // e.preventDefaut();
+        e.preventDefaut();
         console.log('token', token);
 
         if (token === '' || balance === '') {
@@ -33,31 +36,40 @@ function Edit() {
             navigate('/', { replace: true });
         }
     }
-    function handleRemove() {
-        console.log('remove clicked -->');
-    }
 
-    // let idToEdit = tokens.find((token) => token.id == id);
-    // console.log('token to edit -->', idToEdit);
+    function handleRemove() {
+        // tokens = tokens.filter((token) => token.id == tokenId.id);
+
+        setMessageRemove(true);
+        console.log('remove clicked -->', tokens, tokens[tokenIndex], 'id',tokenId.id);
+    }
 
     return (
         <>
-            <div className='edit-btns'>
-                <h5>Edit Token</h5>
-                <NavButton link='/' variant='back' text='Back' />
-            </div>
+            <PageTitle title='Edit Token' />
             <Form
                 token={token}
                 balance={balance}
                 handleSave={(e) => handleSave(e)}
-                handleRemove={handleRemove}
+                handleRemove={(e) => handleRemove(e)}
                 setToken={setToken}
                 setBalance={setBalance}
             />
-            {messageError && (
-                <h3>
-                    You missed some field, Please fill all the informations!
-                </h3>
+            {messageError && <ErrorMessage />}
+            {messageRemove && (
+                <div>
+                    <h4>Are you sure you want to delete your token?</h4>
+                    <Button
+                        variant='save'
+                        // onClick={handleRemoveYes}
+                        text='YES'
+                    />
+                    <Button
+                        variant='remove'
+                        onClick={setMessageRemove(false)}
+                        text='NO'
+                    />
+                </div>
             )}
         </>
     );
