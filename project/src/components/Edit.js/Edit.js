@@ -19,6 +19,7 @@ function Edit() {
             setMessageError(true);
         } else {
             tokens[tokenIndex] = {
+                ...tokens[tokenIndex],
                 token: token,
                 balance: balance
             };
@@ -26,11 +27,7 @@ function Edit() {
     }
     function handleRemove() {
         console.log('remove clicked -->');
-        // tokens[tokenToEdit] = {
-        //     token: newToken,
-        //     balance: newBalance
-        // }
-        // }
+     
     }
 
     // let idToEdit = tokens.find((token) => token.id == id);
