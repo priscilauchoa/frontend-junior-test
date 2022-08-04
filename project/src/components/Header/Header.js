@@ -23,7 +23,7 @@ function Header() {
                 </div>
                 {addTokenClicked && (
                     <NavButton
-                        link='/token'
+                        link='/add'
                         variant='add-token'
                         onClick={handleAddToken}
                         text='Add Token'
