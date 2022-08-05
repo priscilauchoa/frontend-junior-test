@@ -1,14 +1,14 @@
 import { v4 } from 'uuid';
 
-export function deleteToken(id) {
+export function deleteToken(token) {
     let tokens = getTokens();
-    tokens = tokens.filter((token) => token.id !== id);
+    tokens = tokens.filter((item) => item.id !== token.id);
 
     persist(tokens);
 }
 
 export function createToken(token) {
-    exists(token.token);
+    exists(token);
     const tokens = getTokens();
 
     tokens.push({
@@ -20,11 +20,14 @@ export function createToken(token) {
 }
 
 export function editToken(token) {
-    exists(token.token);
+    exists(token);
     const tokens = getTokens();
 
-    tokens[token.index] = {
-        ...tokens[token.index],
+    const tokenRecord = tokens.find((item) => item.id === token.id);
+    const tokenIndex = tokens.indexOf(tokenRecord);
+
+    tokens[tokenIndex] = {
+        ...tokenRecord,
         token: token.token,
         balance: token.balance
     };
@@ -44,10 +47,16 @@ function persist(tokens) {
     window.localStorage.setItem('token', JSON.stringify(tokens));
 }
 
+const DuplicatedTokenError = Error('Duplicated token');
 function exists(token) {
     const tokens = getTokens();
-    let hasToken = tokens.some((item) => item.token === token);
-    if (hasToken) {
-        throw Error('Duplicated token');
+    let duplicatedTokens = tokens.filter((item) => item.token === token.token);
+
+    const hasManyDuplicatedToken = duplicatedTokens.length > 1;
+    const hasDuplicate =
+        duplicatedTokens.length === 1 && duplicatedTokens[0].id !== token.id;
+
+    if (hasManyDuplicatedToken || hasDuplicate) {
+        throw DuplicatedTokenError;
     }
 }

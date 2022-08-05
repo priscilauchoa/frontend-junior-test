@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage.js';
-import Form from '../components/Form/Form';
+import FormToken from '../components/FormToken/FormToken';
 import Header from '../components/Header/Header.js';
 import PageTitle from '../components/PageTitle/PageTitle';
-import { createToken } from '../../store/token';
+import { createToken } from '../../store/token.js';
 
 function AddToken() {
     const [token, setToken] = useState('');
@@ -33,12 +33,12 @@ function AddToken() {
         <>
             <Header hideAddButton />
             <PageTitle title='Add Token' />
-            <Form
+            <FormToken
                 token={token}
                 balance={balance}
-                handleSave={handleSave}
-                setToken={setToken}
-                setBalance={setBalance}
+                onSave={handleSave}
+                onTokenChange={setToken}
+                onBalanceChange={setBalance}
                 hideRemoveButton
             />
 
