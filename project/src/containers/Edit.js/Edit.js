@@ -23,8 +23,6 @@ function Edit() {
     const [messageErrorDuplicated, setMessageErrorDuplicated] = useState(false);
     const [messageRemove, setMessageRemove] = useState(false);
 
-    console.log('### balance', balance);
-
     function handleSave(e) {
         if (token === '' || balance === '') {
             setMessageErrorEmptyInput(true);
@@ -40,7 +38,6 @@ function Edit() {
 
             navigate('/', { replace: true });
         } catch (err) {
-            console.log('### err', err);
             setMessageErrorDuplicated(true);
         }
     }

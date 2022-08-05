@@ -15,11 +15,8 @@ function AddToken() {
     let navigate = useNavigate();
 
     function handleSave(e) {
-        console.log('no token typed');
-
         if (token === '' || balance === '') {
             setMessageError(true);
-            console.log('no token typed');
             return;
         }
 
