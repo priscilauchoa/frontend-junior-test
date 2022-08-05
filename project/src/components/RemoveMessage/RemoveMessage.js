@@ -9,7 +9,7 @@ export default function RemoveMessage(props) {
                 <div className='btn-wrapper'>
                     <Button
                         variant='save'
-                        onClick={props.handleRemoveConfirmation}
+                        onClick={() => props.handleRemoveConfirmation()}
                         text='YES'
                     />
                     <Button
