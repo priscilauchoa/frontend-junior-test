@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    /* width: 100vw; */
+    width: 100vw;
     position: absolute;
     background-color: rgba(31, 30, 30, 0.569);
     margin: 0;
@@ -11,7 +11,7 @@
 }
 
 .container > div {
-    background-color: rgb(83, 89, 163);
+    background-color: rgb(71, 72, 104);
     width: 65%;
     border-radius: 2px;
     padding: 30px;
