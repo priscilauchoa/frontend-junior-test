@@ -2,7 +2,7 @@ import { ReactComponent as EditIcon } from '../../assets/edit.svg';
 
 export default function Table(props) {
     return (
-        <tr>
+        <tr className='fill'>
             <td key={props.id} className={props.left}>
                 <button onClick={() => props.handleEdit(props.id)}>
                     <EditIcon className='edit' />

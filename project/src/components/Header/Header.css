@@ -1,18 +1,25 @@
-.header {
+header {
+    width: 100%;
+}
+
+.fill {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
     width: 100%;
 }
 
 .logo {
-    text-align: center;
-    height: 3.5vmin;
+    height: 13vmin;
     padding: 25px;
+    text-align: center;
 }
 
 .star-wrapper {
+    align-items: center;
     display: flex;
     justify-content: space-between;
     font-size: 12px;
-    align-items: center;
 }
 
 .logo-wrapper {
@@ -20,11 +27,20 @@
     justify-content: center;
 }
 
-.star-wrapper > div {
+.fill > div {
     display: flex;
 }
+
 .star {
     fill: yellow;
-    height: 3vmin;
-    margin: 25px 5px 25px 0;
+    height: 5vmin;
+}
+
+.mg {
+    padding-left: 25px;
+}
+
+h1 {
+    font-size: 26px;
+    margin: 0 4px;
 }

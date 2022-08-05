@@ -6,3 +6,12 @@
     margin: 0 auto;
     width: 40%;
 }
+
+div {
+    margin: 10px 0;;
+}
+
+h5{
+    font-size: 12px;
+    margin: 5px 0;
+}

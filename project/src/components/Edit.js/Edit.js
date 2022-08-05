@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import PageTitle from '../PageTitle/PageTitle';
 import RemoveMessage from '../RemoveMessage/RemoveMessage';
+import Header from '../Header/Header.js';
 
 function Edit() {
     const tokens = getTokens();
@@ -29,13 +30,13 @@ function Edit() {
             console.log('no token typed');
         } else {
             console.log('XXX', tokenIndex);
-            editToken({token: token, balance:balance, id: tokenIndex})
+            editToken({ token: token, balance: balance, id: tokenIndex });
             tokens[tokenIndex] = {
                 ...tokens[tokenIndex],
                 token: token,
                 balance: balance
             };
-            navigate('/home', { replace: true });
+            navigate('/', { replace: true });
         }
     }
 
@@ -46,11 +47,12 @@ function Edit() {
 
     function handleRemoveConfirmation() {
         deleteToken(tokenId.id);
-        navigate('/home', { replace: true });
+        navigate('/', { replace: true });
     }
 
     return (
         <>
+            <Header />
             <PageTitle title='Edit Token' />
             <Form
                 token={token}
