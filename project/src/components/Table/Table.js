@@ -9,7 +9,7 @@ export default function Table(props) {
                 </button>
                 {props.token}
             </td>
-            <td className={props.right}>{props.balance}</td>
+            <td className={props.right}>{props.balance} </td>
         </tr>
     );
 }

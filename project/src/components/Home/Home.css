@@ -15,9 +15,17 @@ td {
 .edit {
     fill: white;
     width: 12px;
-    padding: 0 10px;
+    padding-right: 5px;
 }
 
 button {
     background-color: transparent;
+}
+
+.right {
+    text-align: right;
+}
+
+.left {
+    text-align: left;
 }
