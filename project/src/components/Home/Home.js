@@ -12,10 +12,8 @@ function Home() {
     let navigate = useNavigate();
     let currentTokens = JSON.parse(window.localStorage.getItem('token'));
 
-    console.log('edit btn clicked',tokens)
     
     function handleEdit(id) {
-        console.log('edit btn clicked',tokens)
         let tokenToEdit = tokens.find((token) => token.id == id);
         navigate(`/edit/${tokenToEdit.id}`, { replace: true });
     }
@@ -26,7 +24,7 @@ function Home() {
                 <NavButton link='/add' variant='add-token' text='Add Token' />
                 <tr>
                     <th>Tokens</th>
-                    <th>Balance</th>
+                    <th className='right'>Balance</th>
                 </tr>
                 {currentTokens &&
                     currentTokens.map((item) => {

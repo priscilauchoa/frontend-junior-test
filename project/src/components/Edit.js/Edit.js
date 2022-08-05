@@ -1,6 +1,6 @@
 // import React, { useState } from 'react';
 
-import { deleteToken, getTokens } from '../tokens.js';
+import { deleteToken, editToken, getTokens } from '../tokens.js';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import Form from '../Form/Form.js';
@@ -28,6 +28,8 @@ function Edit() {
             setMessageError(true);
             console.log('no token typed');
         } else {
+            console.log('XXX', tokenIndex);
+            editToken({token: token, balance:balance, id: tokenIndex})
             tokens[tokenIndex] = {
                 ...tokens[tokenIndex],
                 token: token,

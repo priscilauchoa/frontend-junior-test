@@ -17,6 +17,18 @@ export function createToken(token) {
     persist(tokens);
 }
 
+export function editToken(token) {
+    const tokens = getTokens();
+    console.log('tokens______>', token);
+    tokens[token.id] = {
+        ...tokens[token.id],
+        token: token.token,
+        balance: token.balance
+    };
+    
+    persist(tokens);
+}
+
 export function getTokens() {
     const tokens = window.localStorage.getItem('token');
     if (tokens) {
