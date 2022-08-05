@@ -18,7 +18,7 @@ function Form(props) {
                 ></input>
                 <label>Balance</label>
                 <input
-                    type='text'
+                    type='number'
                     name='balance'
                     defaultValue={props.balance}
                     onChange={(e) => props.setBalance(e.target.value)}
