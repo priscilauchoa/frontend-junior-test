@@ -11,7 +11,7 @@ function Home() {
     let currentTokens = JSON.parse(window.localStorage.getItem('token'));
 
     function handleEdit(id) {
-        let tokenToEdit = tokens.find((token) => token.id == id);
+        let tokenToEdit = tokens.find((token) => token.id === id);
         navigate(`/edit/${tokenToEdit.id}`, { replace: true });
     }
 

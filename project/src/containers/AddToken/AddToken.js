@@ -10,6 +10,8 @@ function AddToken() {
     const [token, setToken] = useState('');
     const [balance, setBalance] = useState('');
     const [messageError, setMessageError] = useState(false);
+    const [messageErrorDuplicated, setMessageErrorDuplicated] = useState(false);
+
     let navigate = useNavigate();
 
     function handleSave(e) {
@@ -18,10 +20,15 @@ function AddToken() {
         if (token === '' || balance === '') {
             setMessageError(true);
             console.log('no token typed');
-        } else {
+            return;
+        }
+
+        try {
             createToken({ token: token, balance: balance });
 
             navigate('/', { replace: true });
+        } catch (err) {
+            setMessageErrorDuplicated(true);
         }
     }
 
@@ -41,6 +48,11 @@ function AddToken() {
             {messageError && (
                 <ErrorMessage>
                     You missed some field, Please fill all the informations!
+                </ErrorMessage>
+            )}
+            {messageErrorDuplicated && (
+                <ErrorMessage>
+                    This token already exists, please enter a new one
                 </ErrorMessage>
             )}
         </>

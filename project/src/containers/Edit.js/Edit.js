@@ -13,34 +13,35 @@ import Header from '../components/Header/Header.js';
 function Edit() {
     const tokens = getTokens();
     let { id } = useParams();
-    let tokenId = tokens.find((token) => token.id == id);
+    let tokenId = tokens.find((token) => token.id === id);
     let tokenIndex = tokens.indexOf(tokenId);
     let navigate = useNavigate();
 
     const [token, setToken] = useState(tokens[tokenIndex].token);
     const [balance, setBalance] = useState(tokens[tokenIndex].balance);
-    const [messageError, setMessageError] = useState(false);
+    const [messageErrorEmptyInput, setMessageErrorEmptyInput] = useState(false);
+    const [messageErrorDuplicated, setMessageErrorDuplicated] = useState(false);
     const [messageRemove, setMessageRemove] = useState(false);
 
-    function handleSave(e) {
-        console.log('token', token);
+    console.log('### balance', balance);
 
+    function handleSave(e) {
         if (token === '' || balance === '') {
-            setMessageError(true);
-            console.log('no token typed');
-        } else {
-            console.log('XXX', tokenIndex);
-            try {
-                editToken({ token: token, balance: balance, id: tokenIndex });
-            } catch (err) {
-                // something happens in case there is a duplicated token
-            }
-            tokens[tokenIndex] = {
-                ...tokens[tokenIndex],
-                token: token,
-                balance: balance
-            };
+            setMessageErrorEmptyInput(true);
+            return;
+        }
+
+        try {
+            editToken({
+                token,
+                balance,
+                index: tokenIndex
+            });
+
             navigate('/', { replace: true });
+        } catch (err) {
+            console.log('### err', err);
+            setMessageErrorDuplicated(true);
         }
     }
 
@@ -67,7 +68,16 @@ function Edit() {
                 setToken={setToken}
                 setBalance={setBalance}
             />
-            {messageError && <ErrorMessage />}
+            {messageErrorEmptyInput && (
+                <ErrorMessage>
+                    You missed some field, Please fill all the informations!
+                </ErrorMessage>
+            )}
+            {messageErrorDuplicated && (
+                <ErrorMessage>
+                    This token already exists, please enter a new one
+                </ErrorMessage>
+            )}
             {messageRemove && (
                 <>
                     <RemoveMessage

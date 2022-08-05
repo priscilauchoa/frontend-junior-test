@@ -1,3 +1,5 @@
+import { v4 } from 'uuid';
+
 export function deleteToken(id) {
     let tokens = getTokens();
     tokens = tokens.filter((token) => token.id !== id);
@@ -6,12 +8,12 @@ export function deleteToken(id) {
 }
 
 export function createToken(token) {
+    exists(token.token);
     const tokens = getTokens();
-    console.log('tokens______>', token);
 
     tokens.push({
         ...token,
-        id: tokens.length + 1 // could use uuid for is instead
+        id: v4()
     });
 
     persist(tokens);
@@ -19,11 +21,10 @@ export function createToken(token) {
 
 export function editToken(token) {
     exists(token.token);
-
     const tokens = getTokens();
-    console.log('tokens______>', token);
-    tokens[token.id - 1] = {
-        ...tokens[token.id],
+
+    tokens[token.index] = {
+        ...tokens[token.index],
         token: token.token,
         balance: token.balance
     };
@@ -44,8 +45,9 @@ function persist(tokens) {
 }
 
 function exists(token) {
-    // check
-    if (exists) {
-        throw Error();
+    const tokens = getTokens();
+    let hasToken = tokens.some((item) => item.token === token);
+    if (hasToken) {
+        throw Error('Duplicated token');
     }
 }
