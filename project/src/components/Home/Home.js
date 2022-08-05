@@ -1,24 +1,18 @@
 // import React, { useState } from 'react';
 import './Home.css';
-import { ReactComponent as EditIccon } from '../../assets/edit.svg';
+import { ReactComponent as EditIcon } from '../../assets/edit.svg';
 import tokens from '../tokens.js';
 import { useNavigate } from 'react-router-dom';
 import NavButton from '../NavButton/NavButton';
+import Table from '../Table/Table.js';
 
 function Home() {
-    // const [edit, setEdit] = useState(true);
     let navigate = useNavigate();
 
     function handleEdit(id) {
         let tokenToEdit = tokens.find((token) => token.id == id);
 
-        // console.log('token to edit -->', tokenToEdit);
         navigate(`/edit/${tokenToEdit.id}`, { replace: true });
-
-        // tokens[tokenToEdit] = {
-        //     token: newToken,
-        //     balance: newBalance
-        // }
     }
 
     return (
@@ -32,15 +26,14 @@ function Home() {
                 {tokens &&
                     tokens.map((item) => {
                         return (
-                            <tr>
-                                <td key={item.id}>
-                                    <button onClick={() => handleEdit(item.id)}>
-                                        <EditIccon className='edit' />
-                                    </button>
-                                    {item.token}
-                                </td>
-                                <td>{item.balance}</td>
-                            </tr>
+                            <Table
+                                id={item.id}
+                                handleEdit={handleEdit}
+                                token={item.token}
+                                balance={item.balance}
+                                left='left'
+                                right='right'
+                            />
                         );
                     })}
             </table>

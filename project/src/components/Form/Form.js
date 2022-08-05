@@ -23,9 +23,10 @@ function Form(props) {
                 ></input>
                 <div className='edit-btns'>
                     <NavButton
-                        link='/'
+                        link='/home'
                         variant='remove'
                         onClick={props.handleRemove}
+                        // onClick={}
                         text='Remove'
                         className='display'
                     />
