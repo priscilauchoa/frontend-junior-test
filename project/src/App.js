@@ -1,13 +1,16 @@
 import './App.css';
 import React from 'react';
-import Home from './containers/Home/Home.js';
+import { createBrowserHistory } from 'history';
+import Home from './containers/TokenList/TokenList.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Edit from './containers/Edit.js/Edit.js';
+import Edit from './containers/EditToken.js/EditToken.js';
 import AddToken from './containers/AddToken/AddToken.js';
+
+const history = createBrowserHistory();
 
 function App() {
     return (
-        <Router>
+        <Router history={history}>
             <div className='App'>
                 <Routes>
                     <Route exact path='/' element={<Home />} />
