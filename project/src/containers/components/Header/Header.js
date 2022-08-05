@@ -1,7 +1,7 @@
 import './Header.css';
-import logo from '../../assets/logo.svg';
-import { ReactComponent as Star } from '../../assets/shooting-star.svg';
-import NavButton from '../NavButton/NavButton';
+import logo from '../../../assets/logo.svg';
+import { ReactComponent as Star } from '../../../assets/shooting-star.svg';
+import NavButton from '../../../components/NavButton/NavButton';
 
 function Header(props) {
     const { hideAddButton } = props;

@@ -26,13 +26,6 @@ button {
     background-color: rgb(176, 30, 30);
 }
 
-.edit-btns {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
 .display {
     display: none;
 }

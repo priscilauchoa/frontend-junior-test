@@ -1,14 +1,14 @@
 // import React, { useState } from 'react';
 
-import { deleteToken, editToken, getTokens } from '../tokens.js';
+import { deleteToken, editToken, getTokens } from '../../store/token.js';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import Form from '../Form/Form.js';
+import Form from '../components/Form/Form.js';
 import { useNavigate } from 'react-router-dom';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import PageTitle from '../PageTitle/PageTitle';
-import RemoveMessage from '../RemoveMessage/RemoveMessage';
-import Header from '../Header/Header.js';
+import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
+import PageTitle from '../components/PageTitle/PageTitle';
+import RemoveMessage from './components/RemoveMessage/RemoveMessage';
+import Header from '../components/Header/Header.js';
 
 function Edit() {
     const tokens = getTokens();
@@ -30,7 +30,11 @@ function Edit() {
             console.log('no token typed');
         } else {
             console.log('XXX', tokenIndex);
-            editToken({ token: token, balance: balance, id: tokenIndex });
+            try {
+                editToken({ token: token, balance: balance, id: tokenIndex });
+            } catch (err) {
+                // something happens in case there is a duplicated token
+            }
             tokens[tokenIndex] = {
                 ...tokens[tokenIndex],
                 token: token,
@@ -52,7 +56,7 @@ function Edit() {
 
     return (
         <>
-            <Header />
+            <Header hideAddButton />
             <PageTitle title='Edit Token' />
             <Form
                 token={token}

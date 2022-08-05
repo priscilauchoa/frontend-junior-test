@@ -1,5 +1,5 @@
-import Button from '../Button/Button';
-import '../RemoveMessage/RemoveMessage.css';
+import Button from '../../../../components/Button/Button';
+import './RemoveMessage.css';
 
 export default function RemoveMessage(props) {
     return (

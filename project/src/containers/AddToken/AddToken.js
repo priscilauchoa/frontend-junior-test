@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ErrorMessage from '../ErrorMessage/ErrorMessage.js';
-import Form from '../Form/Form';
-import Header from '../Header/Header.js';
-import PageTitle from '../PageTitle/PageTitle';
-import { createToken } from '../tokens';
+import ErrorMessage from '../components/ErrorMessage/ErrorMessage.js';
+import Form from '../components/Form/Form';
+import Header from '../components/Header/Header.js';
+import PageTitle from '../components/PageTitle/PageTitle';
+import { createToken } from '../../store/token';
 
 function AddToken() {
     const [token, setToken] = useState('');
@@ -38,7 +38,11 @@ function AddToken() {
                 hideRemoveButton
             />
 
-            {messageError && <ErrorMessage />}
+            {messageError && (
+                <ErrorMessage>
+                    You missed some field, Please fill all the informations!
+                </ErrorMessage>
+            )}
         </>
     );
 }

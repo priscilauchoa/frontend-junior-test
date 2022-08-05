@@ -1,9 +1,9 @@
 // import React, { useState } from 'react';
 import './Home.css';
-import { getTokens } from '../tokens.js';
+import { getTokens } from '../../store/token.js';
 import { useNavigate } from 'react-router-dom';
-import Table from '../Table/Table.js';
-import Header from '../Header/Header.js';
+import Table from '../components/Table/Table.js';
+import Header from '../components/Header/Header.js';
 
 function Home() {
     const tokens = getTokens();

@@ -1,5 +1,5 @@
-import Button from '../Button/Button';
-import NavButton from '../NavButton/NavButton';
+import Button from '../../../components/Button/Button';
+import NavButton from '../../../components/NavButton/NavButton';
 import './Form.css';
 
 function Form(props) {
@@ -24,7 +24,7 @@ function Form(props) {
                     onChange={(e) => props.setBalance(e.target.value)}
                     required
                 ></input>
-                <div className='edit-btns'>
+                <div className='control-btns'>
                     {!hideRemoveButton && (
                         <NavButton
                             link='/'
