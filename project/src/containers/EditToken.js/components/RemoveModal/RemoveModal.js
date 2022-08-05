@@ -1,7 +1,7 @@
 import Button from '../../../../components/Button/Button';
-import './RemoveMessage.css';
+import './RemoveModal.css';
 
-export default function RemoveMessage(props) {
+export default function RemoveModal(props) {
     return (
         <div className='container'>
             <div>
@@ -9,13 +9,13 @@ export default function RemoveMessage(props) {
                 <div className='btn-wrapper'>
                     <Button
                         variant='save'
-                        onClick={() => props.handleRemoveConfirmation()}
+                        onClick={() => props.onConfirm()}
                         text='YES'
                     />
                     <Button
                         variant='remove'
                         onClick={() => {
-                            props.setMessageRemove(false);
+                            props.onCancel(false);
                         }}
                         text='NO'
                     />

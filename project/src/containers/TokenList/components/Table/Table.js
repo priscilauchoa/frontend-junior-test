@@ -1,16 +1,17 @@
-import { ReactComponent as EditIcon } from '../../../assets/edit.svg';
+import { ReactComponent as EditIcon } from '../../../../assets/edit.svg';
+import './Table.css';
 
 export default function Table(props) {
     return (
         <tr className='fill'>
-            <td key={props.id} className={props.left}>
+            <td className='cell-align-left'>
                 <EditIcon
                     className='icn-edit'
                     onClick={() => props.handleEdit(props.id)}
                 />
                 {props.token}
             </td>
-            <td className={props.right}>{props.balance}</td>
+            <td className='cell-align-right'>{props.balance}</td>
         </tr>
     );
 }

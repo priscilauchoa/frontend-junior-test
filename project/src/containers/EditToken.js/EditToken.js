@@ -2,28 +2,35 @@
 
 import { deleteToken, editToken, getTokens } from '../../store/token.js';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
-import Form from '../components/Form/Form.js';
+import { useEffect, useState } from 'react';
+import FormToken from '../components/FormToken/FormToken.js';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
 import PageTitle from '../components/PageTitle/PageTitle';
-import RemoveMessage from './components/RemoveMessage/RemoveMessage';
 import Header from '../components/Header/Header.js';
+import RemoveModal from './components/RemoveModal/RemoveModal';
 
 function Edit() {
     const tokens = getTokens();
     let { id } = useParams();
-    let tokenId = tokens.find((token) => token.id === id);
-    let tokenIndex = tokens.indexOf(tokenId);
+    let tokenRecord = tokens.find((token) => token.id === id);
+    let tokenIndex = tokens.indexOf(tokenRecord);
     let navigate = useNavigate();
 
-    const [token, setToken] = useState(tokens[tokenIndex].token);
-    const [balance, setBalance] = useState(tokens[tokenIndex].balance);
+    const [token, setToken] = useState(tokenRecord?.token);
+    const [balance, setBalance] = useState(tokenRecord?.balance);
     const [messageErrorEmptyInput, setMessageErrorEmptyInput] = useState(false);
     const [messageErrorDuplicated, setMessageErrorDuplicated] = useState(false);
-    const [messageRemove, setMessageRemove] = useState(false);
+    const [removeModalOpen, setRemoveModalOpen] = useState(false);
 
-    function handleSave(e) {
+    useEffect(() => {
+        console.log('### tokenindex', tokenIndex);
+        if (tokenIndex === -1) {
+            navigate('/', { replace: true });
+        }
+    }, [tokenIndex, navigate]);
+
+    function handleSave() {
         if (token === '' || balance === '') {
             setMessageErrorEmptyInput(true);
             return;
@@ -31,9 +38,9 @@ function Edit() {
 
         try {
             editToken({
+                ...tokenRecord,
                 token,
-                balance,
-                index: tokenIndex
+                balance
             });
 
             navigate('/', { replace: true });
@@ -42,13 +49,12 @@ function Edit() {
         }
     }
 
-    function handleRemove(e) {
-        e.preventDefault();
-        setMessageRemove(true);
+    function handleRemove() {
+        setRemoveModalOpen(true);
     }
 
     function handleRemoveConfirmation() {
-        deleteToken(tokenId.id);
+        deleteToken(tokenRecord);
         navigate('/', { replace: true });
     }
 
@@ -56,14 +62,13 @@ function Edit() {
         <>
             <Header hideAddButton />
             <PageTitle title='Edit Token' />
-            <Form
+            <FormToken
                 token={token}
                 balance={balance}
-                handleSave={(e) => handleSave(e)}
-                handleRemove={(e) => handleRemove(e)}
-                setMessageRemove={setMessageRemove}
-                setToken={setToken}
-                setBalance={setBalance}
+                onSave={handleSave}
+                onRemove={handleRemove}
+                onTokenChange={setToken}
+                onBalanceChange={setBalance}
             />
             {messageErrorEmptyInput && (
                 <ErrorMessage>
@@ -75,13 +80,11 @@ function Edit() {
                     This token already exists, please enter a new one
                 </ErrorMessage>
             )}
-            {messageRemove && (
-                <>
-                    <RemoveMessage
-                        handleRemoveConfirmation={handleRemoveConfirmation}
-                        setMessageRemove={setMessageRemove}
-                    />
-                </>
+            {removeModalOpen && (
+                <RemoveModal
+                    onConfirm={handleRemoveConfirmation}
+                    onCancel={setRemoveModalOpen}
+                />
             )}
         </>
     );
