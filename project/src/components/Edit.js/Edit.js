@@ -1,16 +1,16 @@
 // import React, { useState } from 'react';
-import './Edit.css';
-import tokens from '../tokens.js';
+
+import { deleteToken, getTokens } from '../tokens.js';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import Form from '../Form/Form.js';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import PageTitle from '../PageTitle/PageTitle';
-import Button from '../Button/Button';
 import RemoveMessage from '../RemoveMessage/RemoveMessage';
 
 function Edit() {
+    const tokens = getTokens();
     let { id } = useParams();
     let tokenId = tokens.find((token) => token.id == id);
     let tokenIndex = tokens.indexOf(tokenId);
@@ -38,17 +38,13 @@ function Edit() {
     }
 
     function handleRemove(e) {
-        // tokens = tokens.filter((token) => token.id == tokenId.id);
         e.preventDefault();
-        console.log('handle remove was clicked');
         setMessageRemove(true);
     }
 
-    function handleRemoveConfirmation(){
-        // tokens = tokens.filter((token) => token.id == tokenId.id);
-        console.log("remove confirmation, YES BTN")
+    function handleRemoveConfirmation() {
+        deleteToken(tokenId.id);
         navigate('/home', { replace: true });
-
     }
 
     return (
@@ -63,11 +59,7 @@ function Edit() {
                 setToken={setToken}
                 setBalance={setBalance}
             />
-            {messageError && (
-                <>
-                    <ErrorMessage />
-                </>
-            )}
+            {messageError && <ErrorMessage />}
             {messageRemove && (
                 <>
                     <RemoveMessage

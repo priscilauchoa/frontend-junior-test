@@ -1,10 +1,11 @@
 import Button from '../Button/Button';
 import NavButton from '../NavButton/NavButton';
+import './Form.css';
 
 function Form(props) {
     return (
         <>
-            <form>
+            <div className='form'>
                 <label>Token</label>
                 <input
                     type='text'
@@ -36,7 +37,7 @@ function Form(props) {
                         text='Save'
                     />
                 </div>
-            </form>
+            </div>
         </>
     );
 }
