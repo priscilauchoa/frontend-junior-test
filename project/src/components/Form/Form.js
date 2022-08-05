@@ -3,6 +3,8 @@ import NavButton from '../NavButton/NavButton';
 import './Form.css';
 
 function Form(props) {
+    const { hideRemoveButton } = props;
+
     return (
         <>
             <div className='form'>
@@ -23,14 +25,14 @@ function Form(props) {
                     required
                 ></input>
                 <div className='edit-btns'>
-                    <NavButton
-                        link='/home'
-                        variant='remove'
-                        onClick={props.handleRemove}
-                        // onClick={}
-                        text='Remove'
-                        className='display'
-                    />
+                    {!hideRemoveButton && (
+                        <NavButton
+                            link='/'
+                            variant='remove'
+                            onClick={props.handleRemove}
+                            text='Remove'
+                        />
+                    )}
                     <Button
                         variant='save'
                         onClick={props.handleSave}

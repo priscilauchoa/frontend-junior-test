@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from '../ErrorMessage/ErrorMessage.js';
 import Form from '../Form/Form';
+import Header from '../Header/Header.js';
 import PageTitle from '../PageTitle/PageTitle';
 import { createToken } from '../tokens';
 
@@ -20,12 +21,13 @@ function AddToken() {
         } else {
             createToken({ token: token, balance: balance });
 
-            navigate('/home', { replace: true });
+            navigate('/', { replace: true });
         }
     }
 
     return (
         <>
+            <Header hideAddButton />
             <PageTitle title='Add Token' />
             <Form
                 token={token}
@@ -33,8 +35,8 @@ function AddToken() {
                 handleSave={handleSave}
                 setToken={setToken}
                 setBalance={setBalance}
+                hideRemoveButton
             />
-            {/* <button onClick={(e) => handleSave(e)}></button> */}
 
             {messageError && <ErrorMessage />}
         </>
